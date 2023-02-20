@@ -1,18 +1,24 @@
-# Sorting algorithm Menu
+# Sorting algorithm Menus function (1)
 def sort_menu():
+
     while True:
         print("=======Sorting Menu=======")
         print("1: (Quick Sort Algorithm)")
         print("2: (Merge Sort Algorithm)")
         print("0: (Back to Main Menu)")
 
-        user_input = int(input("-Enter Option:"))
+        #Catches the error other than Int
+        try:
+            user_input = int(input("-Enter Option: "))
+        except ValueError:
+            print("---Invalid input---")
+            continue
         if user_input == 1:
             print("Quick Sort")
             continue
         elif user_input == 2:
             print("Merge Sort")
-            continue
+            continue 
         elif user_input == 0:
             main_menu()
             break
@@ -21,7 +27,7 @@ def sort_menu():
             continue
 
 
-# Searching Algorithm Menu
+# Searching Algorithm Menu function (2)
 def searching_menu():
     while True:
         print("=======Searching Menu=======")
@@ -29,7 +35,11 @@ def searching_menu():
         print("2: (Binary Search)")
         print("0: (Back to Main Menu)")
 
-        user_input = int(input("-Enter Option: "))
+        try:
+            user_input = int(input("-Enter Option: "))
+        except ValueError:
+            print("---Invalid input---")
+            continue
         if user_input == 1:
             print("Linear Searching")
             continue
@@ -43,11 +53,16 @@ def searching_menu():
             print("---Invalid Choose Between Options---")
             continue
 
+# Quit program function 
+def quit_program():
+    print("Goodbye!")
+    quit()
 
-# Main Menu
+
+# Main Menu function 
 def main_menu():
     while True:
-        print("=======Choose from options=======")
+        print("======MAIN=MENU=======")
         print("0: (Exit)")
         print("1: (Sorting algorithm)")
         print("2: (Searching algorithm)")
@@ -58,19 +73,20 @@ def main_menu():
         except ValueError:
             print("---Invalid input---")
             continue
-
         if user_input == 1:
+            print("Sorting")
             sort_menu()
             break
         elif user_input == 2:
             searching_menu()
             break
         elif user_input == 0:
-            print("-Bye Bye-")
-            break
+            quit_program()
         else:
-            print("---Invalid Input---")
+            print("---Invalid Choose Between Options---")
             continue
-
-
 main_menu()
+
+#main_menu()#first function
+#sort_menu() #second function 
+#searching_menu() #third function 
