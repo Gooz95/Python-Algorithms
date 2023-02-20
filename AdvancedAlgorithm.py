@@ -90,4 +90,4 @@ main_menu()
 #main_menu()#first function
 #sort_menu() #second function 
 #searching_menu() #third function 
-# The menu seems to work iv tried to find bugs but it works fine i havent been able to connect the algortihms to he menu buttons 
+#The menu seems to work iv tried to find bugs but it works fine i havent been able to connect the algortihms to he menu buttons main
