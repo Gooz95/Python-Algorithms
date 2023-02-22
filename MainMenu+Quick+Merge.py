@@ -23,7 +23,7 @@ class MergeSortMenu:
         result += left[i:]
         result += right[j:]
         return result
-        
+
     def merge_menu(self):
         # Get user input for the array to be sorted
         while True:
@@ -72,33 +72,42 @@ quick_sorter = QuickSortMenu()
 ###########################################################---Algortihms Above---##################################################
 
 # class BP for ending program 
-class end(object):
+class End(object):
     def __init__(self):
         pass
         
     def quit_program(self):
+        """
+        A method to quit the program and display a goodbye message
+        """
         print("Goodbye!")
         quit()
-quit_program = end()
+
+# Create an instance of the End class to use it later
+end_object = End()
 # obj created into a variable to be able to call within classes function from outside
 
 
 # Sorting algorithm Menus function (1)
-class searchingmenu(object):
+class SearchingMenu:
     def __init__(self):
         pass
     def searching_menu(self):
         while True:
+            # Display menu options
             print("=======Searching Menu=======")
             print("1: (Linear Search)")
             print("2: (Binary Search)")
             print("0: (Back to Main Menu)")
 
+            # Catch input errors
             try:
                 user_input = int(input("-Enter Option: "))
             except ValueError:
                 print("---Invalid input---")
                 continue
+
+            # Handle user input
             if user_input == 1:
                 print("Linear Searching")
                 continue
@@ -106,28 +115,37 @@ class searchingmenu(object):
                 print("Binary Searching")
                 continue
             elif user_input == 0:
-                mainmenu.main_menu()
+                MainMenu.display()
                 break
             else:
                 print("---Invalid Choose Between Options---")
                 continue
-search_menu_obj = searchingmenu()
+# Create instance of the searching menu class
+search_menu_obj = SearchingMenu()
 
-class sortmenu(object):    
+
+# Sort Menu class
+class SortMenu:
     def __init__(self):
+        # Constructor is empty because no additional initialization is needed
         pass
+    
+    # Method to display the sort menu
     def sort_menu(self):
         while True:
-            print("=======Sorting Menu=======")
-            print("1: (Quick Sort Algorithm)")
-            print("2: (Merge Sort Algorithm)")
-            print("0: (Back to Main Menu)")
-            #Catches the error other than Int
+            print("======= Sorting Menu ========")
+            print("1: Quick Sort Algorithm")
+            print("2: Merge Sort Algorithm")
+            print("0: Back to Main Menu")
+            
+            # Prompt user to enter an option and catch any invalid input
             try:
                 user_input = int(input("-Enter Option: "))
             except ValueError:
                 print("---Invalid input---")
                 continue
+            
+            # Handle user input and perform corresponding action
             if user_input == 1:
                 print("Quick Sort")
                 quick_sorter.quick_menu()
@@ -137,28 +155,30 @@ class sortmenu(object):
                 merge_sorter.merge_menu()
                 continue 
             elif user_input == 0:
-                mainmenu.main_menu()
+                MainMenu.display()  # Display the main menu
                 break
             else:
-                print("---Invalid Choose Between Options---")
+                print("---Invalid Option Selected---")
                 continue
-sort_menu_obj = sortmenu()
+# Create an instance of the SortMenu class
+sort_menu_obj = SortMenu()
 
-# Main Menu class
-class mainmenu(object):
-    def main_menu():
+class MainMenu:
+    @staticmethod
+    def display():
         while True:
             print("======MAIN=MENU=======")
             print("0: (Exit)")
             print("1: (Sorting algorithm)")
             print("2: (Searching algorithm)")
 
-            # To catch an error for the input if its other than INT
+            # To catch an error for the input if it's other than INT
             try:
                 user_input = int(input("-Enter option: "))
             except ValueError:
                 print("---Invalid input---")
                 continue
+
             if user_input == 1:
                 print("Sorting")
                 sort_menu_obj.sort_menu()
@@ -167,9 +187,11 @@ class mainmenu(object):
                 search_menu_obj.searching_menu()
                 break
             elif user_input == 0:
-                quit_program.quit_program()
+                end_object.quit_program()
             else:
                 print("---Invalid Choose Between Options---")
-            continue
-# main_menu = mainmenu()
-mainmenu.main_menu()
+                continue
+
+# block to ensure that it only runs when the script is executed directly. 
+if __name__ == "__main__":
+    MainMenu.display()
