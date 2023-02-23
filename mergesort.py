@@ -1,10 +1,12 @@
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
+
+# Defining function for merge sort algorithm
+def merge_sort(array):
+    if len(array) <= 1:
+        return array
     else:
-        mid = len(arr) // 2
-        left = merge_sort(arr[:mid])
-        right = merge_sort(arr[mid:])
+        mid = len(array) // 2
+        left = merge_sort(array[:mid])
+        right = merge_sort(array[mid:])
         return merge(left, right)
 
 def merge(left, right):
@@ -25,13 +27,13 @@ def merge(left, right):
 while True:
     input_str = input("Enter the elements of the array to be sorted, separated by spaces: ")
     try:
-        arr = [int(x) for x in input_str.split()]
+        array = [int(item) for item in input_str.split()]
         break
     except ValueError:
         print("Please type numbers only.")
 
 # Sort the array using Merge Sort
-sorted_arr = merge_sort(arr)
+sorted_array = merge_sort(array)
 
 # Print the sorted array
-print("Sorted array: ", sorted_arr)
+print("Sorted array: ", sorted_array)
