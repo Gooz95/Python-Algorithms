@@ -1,6 +1,6 @@
 import random
-from linearsearch import LinearSearch
-from binarysearch import BinarySearch
+from ClassLinear import LinearSearch
+from ClassBinary import BinarySearch
 
 
 # Initializing class for Merge Sort functions
@@ -36,18 +36,22 @@ class MergeSortMenu:
     def merge_menu(self):
         # Get user input for the array to be sorted
         while True:
+            print("----------------------------------------------------------------------------------------------------------------")
             input_str = input("-Enter the elements of the array to be sorted, separated by spaces: ")
+            print("----------------------------------------------------------------------------------------------------------------")
             try:
                 arr = [int(x) for x in input_str.split()]
                 break
             except ValueError:
-                print("Please type numbers only.")
+                print("---Please type numbers only.---")
 
         # Sort the array using Merge Sort
         sorted_arr = self.merge_sort(arr)
 
         # Print the sorted array
-        print("-Sorted --(Merge)-- array: ", sorted_arr)
+        print("========================================================================================================================")
+        print("-Sorted --(Merge) == ", sorted_arr)
+        print("========================================================================================================================")
 merge_sorter = MergeSortMenu()
 
 # Initializing class for Quick Sort functions
@@ -67,7 +71,9 @@ class QuickSortMenu:
     def quick_menu(self):
         # Get user input for the array to be sorted
         while True:
+            print("----------------------------------------------------------------------------------------------------------------")
             input_str = input("-Enter the elements(numbers only) of the array to be sorted, separated by spaces: ")
+            print("----------------------------------------------------------------------------------------------------------------")
             try:
                 arr = [int(x) for x in input_str.split()]
                 break
@@ -78,7 +84,9 @@ class QuickSortMenu:
         sorted_arr = self.quick_sort(arr)
 
         # Print the sorted array
-        print("-Sorted ---(Quick)--- array: ", sorted_arr)
+        print("========================================================================================================================")
+        print("-Sorted ---(Quick) == ", sorted_arr)
+        print("========================================================================================================================")
 quick_sorter = QuickSortMenu()
 
 
@@ -91,10 +99,9 @@ class End(object):
         pass
         
     def quit_program(self):
-        """
-        A method to quit the program and display a goodbye message
-        """
-        print("Goodbye!")
+        print("========================================================================================================================")
+        print("---------------------------Goodbye!-------------------------------------------------------------------------------------")
+        print("========================================================================================================================")
         quit()
 
 # Create an instance of the End class to use it later
@@ -107,16 +114,17 @@ end_object = End()
 class SearchingMenu:
     def __init__(self):
         pass
-    
-    
+      
     def searching_menu(self):
         while True:
             # Display menu options
-            print("=======Searching Menu=======")
-            print("1: (Linear Search)")
-            print("2: (Binary Search)")
-            print("0: (Back to Main Menu)")
-            
+            print("==========================================================")
+            print("---------------------[ Searching Menu ]-------------------")
+            print("1:--( Linear Search )-------------------------------------")
+            print("2:--( Binary Search )-------------------------------------")
+            print("0:--( Back to Main Menu )---------------------------------")
+            print("==========================================================")
+
             # Catch input errors
             try:
                 user_input = int(input("-Enter Option: "))
@@ -131,9 +139,14 @@ class SearchingMenu:
                 target = int(input("Enter a target value: "))  # ask for target
                 result = LinearSearch.linear_search(array, target)  # using class obj > linear search 
                 if result != -1:
-                    print(f"Target found at index {result}\n")  # if result found, print result
+                    print("=========================================")
+                    print(f"---Value {target} found at index {result}")  # if result found, print result
+                    print("=========================================")
                 else:
-                    print("Target not found in list\n")  # otherwise print not found
+                    print("=========================================")
+                    print(f"---{target} not found in list")  # otherwise print not found
+                    print("=========================================")
+                    continue
             
             elif user_input == 2:
                 array = [random.randint(0, 100) for n in range(10)]  # Random array (10 numbers) from 0 to 100
@@ -143,9 +156,14 @@ class SearchingMenu:
                 result = BinarySearch.binary_search(sorted_array, target)  # using class obj > binary search 
                 
                 if result != -1:
-                    print(f"Target found at index {result}")  # if result found, print result
+                    print("=========================================")
+                    print(f"---Value {target} found at index {result}")  # if result found, print result
+                    print("=========================================")
                 else:
-                    print("Target not found in list")   # otherwise print not found
+                    print("=========================================")
+                    print(f"---{target} not found in list")   # otherwise print not found
+                    print("=========================================")
+                    continue
             
             
             elif user_input == 0:
@@ -168,10 +186,12 @@ class SortMenu:
     # Method to display the sort menu
     def sort_menu(self):
         while True:
-            print("======= Sorting Menu ========")
-            print("1: Quick Sort Algorithm")
-            print("2: Merge Sort Algorithm")
-            print("0: Back to Main Menu")
+            print("==========================================================")
+            print("----------------------[ Sorting-Menu ]--------------------")
+            print("1:--( Quick Sort Algorithm )------------------------------")
+            print("2:--( Merge Sort Algorithm )------------------------------")
+            print("0:--( Back to Main Men )----------------------------------")
+            print("==========================================================")
             
             # Prompt user to enter an option and catch any invalid input
             try:
@@ -202,10 +222,12 @@ class MainMenu:
     @staticmethod
     def display():
         while True:
-            print("======MAIN=MENU=======")
-            print("0: (Exit)")
-            print("1: (Sorting algorithm)")
-            print("2: (Searching algorithm)")
+            print("==========================================================")
+            print("---------------------[ MAIN-MENU ]------------------------")
+            print("0:--( Exit )----------------------------------------------")
+            print("1:--( Sorting algorithm )---------------------------------")
+            print("2:--( Searching algorithm )-------------------------------")
+            print("==========================================================")
 
             # To catch an error for the input if it's other than INT
             try:
