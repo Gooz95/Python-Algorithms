@@ -170,6 +170,7 @@ class MainMenu:
                 SortingMenu.sorting_menu()
                 break
             elif user_input == 2:
+                print('Seraching')
                 SearchingMenu.searching_menu()
                 break
             elif user_input == 0:
