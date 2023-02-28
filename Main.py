@@ -6,13 +6,13 @@ from Algorithms import *
 class End(object):
     def __init__(self):
         pass
-        
+    
     def quit_program(self):
         print(40 * '=')
         print(15 * '-', "Goodbye!", 15 * '-')
         print(40 * '=')
         quit()
-        
+
 # Create an instance of the End class to use it later
 end_object = End()
 
@@ -20,8 +20,8 @@ end_object = End()
 # Sort Menu class
 class SortingMenu:
     @staticmethod
-
-
+    
+    
     # Display menu options
     def sorting_menu():
         while True:
@@ -49,7 +49,7 @@ class SortingMenu:
                         break
                     except ValueError:
                         print("Please type numbers only.")
-            
+                
                 # Sort the array using QuickSort
                 sorted_array = Algorithms.quick_sort(array)
                 
@@ -69,7 +69,7 @@ class SortingMenu:
                         print("Please type numbers only.")
                 # Sort the array using Merge Sort
                 sorted_array = Algorithms.merge_sort(array)
-
+                
                 # Print the sorted array
                 print("Sorted array: ", sorted_array)
                 continue
@@ -97,7 +97,7 @@ class SearchingMenu:
             print("2:--( Binary Search )", 18 * '-')
             print("0:--( Back to Main Menu )", 14 * '-')
             print(40 * '=')
-
+            
             # Catch input errors
             try:
                 user_input = int(input("-Enter Option: "))
@@ -157,14 +157,14 @@ class MainMenu:
             print("1:--( Sorting algorithm )", 14 * '-')
             print("2:--( Searching algorithm )", 12 * '-')
             print(40 * "=")
-
+            
             # To catch an error for the input if it's other than INT
             try:
                 user_input = int(input("-Enter option: "))
             except ValueError:
                 print("---Invalid input---")
                 continue
-
+            
             if user_input == 1:
                 print("Sorting")
                 SortingMenu.sorting_menu()
