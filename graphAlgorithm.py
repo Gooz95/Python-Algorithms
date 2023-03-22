@@ -2,7 +2,6 @@
 import networkx as nx  # for creating and manipulating graphs
 import matplotlib.pyplot as plt  # for visualization
 import math # for the A* algorithm
-from cryptography.fernet import Fernet # for encryption
 
 
 def astar(G, driver_node, restaurant_node):
@@ -69,55 +68,54 @@ def heuristic(node1_pos, node2_pos):
 # --------------------------------------------------------------------------------
 
 
-# generate a secret key for encryption
-key = Fernet.generate_key()
-
-# create a Fernet cipher object for encryption and decryption
-cipher = Fernet(key)
+# Encrypt or decrypt customer data using an XOR cipher.
+# Iterate over each character in the input data, Convert the character to its ASCII code using the ord() function, Perform an XOR operation with the key.
+# Convert the result back to a character using the chr() function, Join the characters together into a new string using the ''.join() method.
+def xor_cipher(data, key):
+   return ''.join(chr(ord(c) ^ key) for c in data) 
 
 customer_details = [
    {'name': 'John Smith', 'address': '123 Main St, Anytown, USA', 'telephone': '555-1234'},
    {'name': 'Jane Doe', 'address': '456 Park Ave, Somewhere, USA', 'telephone': '555-5678'},
    {'name': 'Bob Johnson', 'address': '789 Elm St, Anytown, USA', 'telephone': '555-9012'},
-   {'name': 'Mary Williams', 'address': '321 Oak Ave, Somewhere, USA', 'telephone': '555-3456'}
+   {'name': 'Mary Williams', 'address': '321 Oak Ave, Somewhere, USA', 'telephone': '555-9832'}
 ]
-print(customer_details)
 
 # encrypt each dictionary in the customer_details list
 encrypted_customer_details = []
+key = 10  # secret key for encryption, can change it to any number to have different encryption outputs
 for customer in customer_details:
-   # serialize the dictionary to bytes and encrypt with Fernet
-   serialized_customer = str(customer).encode('utf-8')
-   encrypted_customer = cipher.encrypt(serialized_customer)
+   # serialize the dictionary to a string and encrypt with XOR cipher
+   serialized_customer = str(customer)
+   encrypted_customer = xor_cipher(serialized_customer,key)
    
    # add the encrypted customer details to the list
    encrypted_customer_details.append(encrypted_customer)
 
-# print the list of encrypted customer details
-print(encrypted_customer_details)
 
 # prompt the user to add customer details
 while True:
-   name = input("Enter customer name (or 'q' to quit): ")
-   if name == 'q':
+   name = input("Enter customer name (or q to quit): ")
+   if name == "q":
       break
    address = input("Enter customer address: ")
    telephone = input("Enter customer telephone number: ")
    
    # create a dictionary containing the customer details
-   customer = {'name': name, 'address': address, 'telephone': telephone}
-   
-   # serialize the dictionary to bytes and encrypt with Fernet
-   serialized_customer = str(customer).encode('utf-8')
-   encrypted_customer = cipher.encrypt(serialized_customer)
+   customer = {"name": name,"address": address,"telephone": telephone}
+   # append the customer dictionary to the customer_details list
+   customer_details.append(customer)
+   print(customer_details)
+   # serialize the dictionary to a string and encrypt with XOR cipher
+   serialized_customer = str(customer)
+   encrypted_customer = xor_cipher(serialized_customer,key)
    
    # add the encrypted customer details to the list
-   customer_details.append(encrypted_customer)
-   print(customer)
-   break
+   encrypted_customer_details.append(encrypted_customer)
 
-print(customer)
-print(customer_details)
+
+# print the list of encrypted customer details
+print(f'List of encrypted customer details:\n{encrypted_customer_details}')
 
 # Create a new graph object empty
 G = nx.Graph()
@@ -174,7 +172,7 @@ def animate_graph(G):
    nx.draw_networkx_edges(G, pos, edge_color=edge_colors)
    
    # Draw edge labels
-   # nx.draw_networkx_edge_labels(G,pos=pos,edge_labels=edge_labels) # uncomment to view the edge value distance 
+   nx.draw_networkx_edge_labels(G,pos=pos,edge_labels=edge_labels) # comment or uncomment to view the edge value distance 
    
    # Update plot
    plt.pause(1)
@@ -192,8 +190,8 @@ for neighboorhood in nodes:
       continue
    try:
       # Calculate the shortest path length from the neighboorhoods to the restaurant using A* algorithm
-      length, _ = astar(G, neighboorhood, 'Restaurant')
       # assign only the first element of the tuple (the shortest distance) to the variable length, while discarding the second element (the shortest path).
+      length, _ = astar(G, neighboorhood, 'Restaurant')
       
       # If this length is less than the previous minimum, update the minimum distance and the neighboorhood
       if length<minimum_dist:
@@ -264,7 +262,3 @@ while True:
 
 # Display the final graph
 plt.show()
-
-# a* function to line 82 xxxx DONE 
-# static postion of nodes. DONE
-# customer details in a dict{list[]} with simple encryption
