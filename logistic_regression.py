@@ -1,9 +1,10 @@
 import csv
 import random
-from math import exp
+import math
+
 
 def sigmoid(z):
-    return 1 / (1 + exp(-z))
+    return 1 / (1 + math.exp(-z))
 
 def predict_probabilities(X, coefficients):
     return [sigmoid(sum([x * c for x, c in zip(row, coefficients)])) for row in X]
@@ -14,7 +15,7 @@ def predict(X, coefficients):
 
 def cost_function(X, y, coefficients):
     probabilities = predict_probabilities(X, coefficients)
-    return -sum([y_i * log(p) + (1 - y_i) * log(1 - p) for y_i, p in zip(y, probabilities)])
+    return -sum([y_i * math.log(p) + (1 - y_i) * math.log(1 - p) for y_i, p in zip(y, probabilities)])
 
 def gradient_descent(X, y, coefficients, learning_rate):
     new_coefficients = []
