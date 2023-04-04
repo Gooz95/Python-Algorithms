@@ -1,8 +1,8 @@
 # Import necessary libraries
-import csv
-import random
-from math import log2
-from collections import Counter
+import csv  # for reading data from a CSV file
+import random   # for shuffling the data before splitting into training and test sets
+from math import log2 # for mathematical operations such as exponential and logarithmic functions
+from collections import Counter  # for Counting the number of occurrences of each class in the dataset
 
 
 def entropy(data):      # Define a function to calculate the entropy of a dataset
@@ -99,13 +99,17 @@ forest = build_random_forest(train_data, n_trees)
 symptoms = []   # Accept user input for symptoms and validate the input
 for symptom in header[:-1]:
     while True:
+        # Ask the user if they have each symptom listed in the header row (all columns except the last one)
         response = input(f'Do you have {symptom}? (yes/no) ').lower()
+        # If the user responds with 'yes' or 'y', append 1 to the symptoms list and break out of the while loop
         if response in {'yes', 'y'}:
             symptoms.append(1)
             break
+        # If the user responds with 'no' or 'n', append 0 to the symptoms list and break out of the while loop
         elif response in {'no', 'n'}:
             symptoms.append(0)
             break
+        # If the user responds with anything else, print an error message and ask again
         else:
             print('Invalid input. Please enter yes or no.')
 
